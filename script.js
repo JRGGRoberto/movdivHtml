@@ -1,12 +1,12 @@
 let dataInscri = [
-    { id: "1", prog: "01", nome: "Raul Plassmann ",  campus: "Paranavaí",        colegiado: "Goleiro",      dt: "14/08/2025" },
-    { id: "2", prog: "02", nome: "Cantareli",        campus: "Paranaguá",        colegiado: "Goleiro ",     dt: "14/08/2025" },
-    { id: "3", prog: "03", nome: "Figueiredo",       campus: "União da Vitória", colegiado: "Zagueiro",     dt: "14/08/2025" },
-    { id: "4", prog: "04", nome: "Carlos Mozer",     campus: "União da Vitória", colegiado: "Zagueiro",     dt: "14/08/2025" },
-    { id: "5", prog: "05", nome: "Marinho",          campus: "Apucarana",        colegiado: "Zagueiro",     dt: "14/08/2025" },
-    { id: "6", prog: "06", nome: "Junior",           campus: "Apucarana",        colegiado: "Lateral Esq.", dt: "14/08/2025" },
-    { id: "7", prog: "07", nome: "Leandro",          campus: "Apucarana",        colegiado: "Lateral Dir.", dt: "14/08/2025" },
-    { id: "8", prog: "08", nome: "Andrade",          campus: "Apucarana",        colegiado: "Volante",      dt: "14/08/2025" }
+    { id: "1", prog: "01", nome: "Raul Plassmann ",  campus: "Paranavaí",        funcao: "Goleiro",      dt: "14/08/2025" },
+    { id: "2", prog: "02", nome: "Cantareli",        campus: "Paranaguá",        funcao: "Goleiro",     dt: "14/08/2025" },
+    { id: "3", prog: "03", nome: "Figueiredo",       campus: "União da Vitória", funcao: "Zagueiro",     dt: "14/08/2025" },
+    { id: "4", prog: "04", nome: "Carlos Mozer",     campus: "União da Vitória", funcao: "Zagueiro",     dt: "14/08/2025" },
+    { id: "5", prog: "05", nome: "Marinho",          campus: "Apucarana",        funcao: "Zagueiro",     dt: "14/08/2025" },
+    { id: "6", prog: "06", nome: "Junior",           campus: "Apucarana",        funcao: "Lateral Esq.", dt: "14/08/2025" },
+    { id: "7", prog: "07", nome: "Leandro",          campus: "Apucarana",        funcao: "Lateral Dir.", dt: "14/08/2025" },
+    { id: "8", prog: "08", nome: "Andrade",          campus: "Apucarana",        funcao: "Volante",      dt: "14/08/2025" }
 ];
 
 // Apaga lista antes de recriar
@@ -63,6 +63,19 @@ function criarBotao(classe, simbolo, acao) {
     return btn;
 }
 
+function cores(cor) {
+    switch (cor) {
+        case 'Goleiro':
+            return 'success';
+            break;
+        case 'Zagueiro':
+            return 'info';
+            break;
+        default :
+            return 'secondary';
+    }
+}
+
 // Monta a lista
 function listarInscricoes() {
     const elementoPaiDiv = document.getElementById("listaInscricoes");
@@ -70,13 +83,16 @@ function listarInscricoes() {
 
     dataInscri.forEach(e => {
         const div = document.createElement("div");
-        div.className = "alert alert-secondary alert-dismissible fade show d-flex justify-content-between align-items-center";
+        let cor = cores(e.funcao);
+
+        div.className = `alert alert-${cor} alert-dismissible fade show d-flex justify-content-between align-items-center`;
         div.id = e.id;
 
         const info = document.createElement("div");
+
         info.innerHTML = `
             <strong>${e.prog}</strong> ${e.nome} 
-            <span class="badge badge-secondary">${e.campus}</span> ${e.colegiado}.
+            <span class="badge badge-secondary">${e.campus}</span> ${e.funcao}.
             <span class="badge badge-secondary">${e.dt}</span>
         `;
 
